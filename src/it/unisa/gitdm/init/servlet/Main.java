@@ -17,8 +17,8 @@ public class Main {
         String repoURL = "https://github.com/apache/ant.git";
         //String repoURL = "https://github.com/fabianopecorelli/provaPerTesi.git";
         String projectName = "ant";
-        String where = "/home/fabiano/Desktop/gitdm/";
-        String scatteringFolder = "/home/fabiano/Desktop/gitdm/scattering/";
+        String where = "/home/sesa/Scrivania/gitdm/";
+        String scatteringFolder = "/home/sesa/Scrivania/gitdm/scattering/";
         String issueTracker = "bugzilla";
         String bugzillaUrl = "https://issues.apache.org/bugzilla/";
         //classifier
@@ -26,17 +26,17 @@ public class Main {
         String classifierName = "j48";
         String modelName = "myModel";
         
-        Main.initAndCheckout(repoURL, where, projectName,"All", scatteringFolder, issueTracker, bugzillaUrl, "Ant", true, true, false, j48, classifierName, modelName);
+        Main.initAndCheckout(repoURL, where, projectName,"All", scatteringFolder, issueTracker, bugzillaUrl, "Ant", false, false, false, j48, classifierName, modelName);
     }
     
     public static void initAndCheckout(String repoURL, String baseFolder, String projectName, String periodLength,
                                      String scatteringFolderPath, String issueTracker, String issueTrackerPath, String productName, boolean initRepository, boolean initIssueTracker, boolean isSVN, Classifier classifier, String classifierName, String modelName) throws IOException, InterruptedException{
-//        Git.clone(repoURL, isSVN, projectName, baseFolder);
-//        Checkout checkout = new Checkout(projectName, periodLength, baseFolder, scatteringFolderPath, initRepository);
-//        CalculateDeveloperStructuralScattering calculateDeveloperStructuralScattering = new CalculateDeveloperStructuralScattering(projectName, periodLength, scatteringFolderPath);
-//        CalculateDeveloperSemanticScattering calculateDeveloperSemanticScattering = new CalculateDeveloperSemanticScattering(projectName, periodLength, baseFolder, scatteringFolderPath);
+        Git.clone(repoURL, isSVN, projectName, baseFolder);
+        Checkout checkout = new Checkout(projectName, periodLength, baseFolder, scatteringFolderPath, initRepository);
+        CalculateDeveloperStructuralScattering calculateDeveloperStructuralScattering = new CalculateDeveloperStructuralScattering(projectName, periodLength, scatteringFolderPath);
+        CalculateDeveloperSemanticScattering calculateDeveloperSemanticScattering = new CalculateDeveloperSemanticScattering(projectName, periodLength, baseFolder, scatteringFolderPath);
 //        CalculateBuggyFiles calculateBuggyFiles = new CalculateBuggyFiles(scatteringFolderPath, projectName, issueTracker, issueTrackerPath, productName, initIssueTracker, false, isSVN);
-//        CalculatePredictors calculatePredictors = new CalculatePredictors(projectName, issueTracker, issueTrackerPath, productName, periodLength, baseFolder, scatteringFolderPath);
-        WekaEvaluator we = new WekaEvaluator(projectName, classifier,"/home/fabiano/Desktop/01.csv", classifierName, modelName);
+        CalculatePredictors calculatePredictors = new CalculatePredictors(projectName, issueTracker, issueTrackerPath, productName, periodLength, baseFolder, scatteringFolderPath);
+        WekaEvaluator we = new WekaEvaluator(projectName, classifier,"/home/sesa/Scrivania/gitdm/scattering/ant/All/periodsData_1/01.csv", classifierName, modelName);
     }
 }

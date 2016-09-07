@@ -59,13 +59,13 @@ public class PeriodManager {
             }
         } else if (periodLengthString.equals("All")) {
 
-            Period p = new Period(periodId, changes, periodCommits);
-            periodList.add(p);
+//            Period p = new Period(periodId, changes, periodCommits);
+//            periodList.add(p);
                         
             for (Commit commit : commits) {
                 changes.addAll(commit.getChanges());
                 periodCommits.add(commit);
-                previousCommit = commit;
+//                previousCommit = commit;
                 
             }
         } else {
